@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./circleToggle.css";
 
 interface Props {
-  showChild: string;
+  showChild: "first" | "second";
   setChild: React.Dispatch<React.SetStateAction<boolean>>;
   firstChild: JSX.Element;
   secondChild: JSX.Element;
