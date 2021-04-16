@@ -1,0 +1,17 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url("https://fonts.googleapis.com/css2?family=Anton&family=Dancing+Script:wght@700&family=Nanum+Gothic+Coding:wght@400;700&display=swap");
+
+.Anton {
+  font-family: "Anton", sans-serif;
+}
+
+.Dancing {
+  font-family: "Dancing Script", cursive;
+}
+
+.Nanum {
+  font-family: "Nanum Gothic Coding", monospace;
+}

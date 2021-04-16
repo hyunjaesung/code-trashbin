@@ -1,0 +1,76 @@
+.cicleToggle-first-in {
+  animation-duration: 1.5s;
+  animation-name: first-in;
+  left: 0.5rem;
+  top: 0.5rem;
+}
+.cicleToggle-first-out {
+  animation-duration: 1.5s;
+  animation-name: first-out;
+  left: -1.5rem;
+  top: -1.1rem;
+}
+
+.cicleToggle-second-in {
+  animation-duration: 1.5s;
+  animation-name: second-in;
+  left: -1.5rem;
+  bottom: -0.5rem;
+  /* left: 0.5rem; */
+  /* bottom: -0.5rem; */
+}
+
+.cicleToggle-second-out {
+  animation-duration: 1.5s;
+  animation-name: second-out;
+  left: 2.5rem;
+  bottom: 1rem;
+}
+
+@keyframes first-in {
+  from {
+    left: -1.5rem;
+    top: -1rem;
+  }
+
+  to {
+    left: 0.5rem;
+    top: 0.5rem;
+  }
+}
+
+@keyframes first-out {
+  from {
+    left: 0.5rem;
+    top: 0.5rem;
+  }
+
+  to {
+    left: -1.5rem;
+    top: -1.1rem;
+  }
+}
+
+@keyframes second-in {
+  from {
+    left: 2.5rem;
+    bottom: 1rem;
+  }
+
+  to {
+    left: -1.5rem;
+    bottom: -0.5rem;
+  }
+}
+
+@keyframes second-out {
+  from {
+    left: -1.5rem;
+    bottom: -0.5rem;
+  }
+
+  to {
+    left: 2.5rem;
+    bottom: 1rem;
+  }
+}
