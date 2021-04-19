@@ -4,7 +4,13 @@ import React, { useState } from "react";
 import DarkModeButton from "./components/DarkModeButton";
 import LoginButton from "./components/LoginButton";
 
-const Header = () => {
+interface IProps {
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  isLogin: boolean;
+}
+
+const Header = ({ setOpenModal, setIsLogin, isLogin }: IProps) => {
   const [isDark, setDark] = useState(
     document.documentElement.classList.contains("dark")
   );
@@ -19,7 +25,11 @@ const Header = () => {
         </div>
         <div className='flex'>
           <DarkModeButton isDark={isDark} setDark={setDark} />
-          <LoginButton isDark={isDark} />
+          {/* <LoginButton
+            setOpenModal={setOpenModal}
+            setIsLogin={setIsLogin}
+            isLogin={isLogin}
+          /> */}
         </div>
       </nav>
     </header>

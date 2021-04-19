@@ -1,9 +1,14 @@
 import React from "react";
 import RotatingMessage from "./RotatingMessage";
-
-const LoginMessage = () => {
+interface Props {
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const LoginMessage = ({ setOpenModal }: Props) => {
   return (
-    <section>
+    <section
+      onClick={() => {
+        setOpenModal(true);
+      }}>
       <RotatingMessage />
     </section>
   );

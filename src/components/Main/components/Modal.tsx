@@ -1,10 +1,40 @@
-import React from "react";
-import { handleGithubLogin } from "../utils/handleLogin";
+import React, { useCallback } from "react";
+import firebase from "firebase";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGithub } from "@fortawesome/free-brands-svg-icons";
-interface Props {}
+interface Props {
+  setIsLogin: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+const provider = new firebase.auth.GithubAuthProvider();
 
-const Modal = (props: Props) => {
+const Modal = ({ setIsLogin, setOpenModal }: Props) => {
+  const handleGithubLogin = useCallback(() => {
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((result) => {
+        /** @type {firebase.auth.OAuthCredential} */
+        const credential = result.credential as firebase.auth.OAuthCredential;
+        const token = credential.accessToken;
+        localStorage.setItem("token", token as string);
+        console.log(result);
+        // The signed-in user info.
+        // const user = result.user;
+        // ...
+        setIsLogin(true);
+        setOpenModal(false);
+      })
+      .catch((error) => {
+        // var errorCode = error.code;
+        // var errorMessage = error.message;
+        // var email = error.email;
+        // var credential = error.credential;
+        localStorage.removeItem("token");
+        setIsLogin(false);
+      });
+  }, [setIsLogin]);
+
   return (
     <section
       className='w-96 h-96 absolute rounded-full bg-white z-50 mt-auto mb-auto flex justify-center flex-col items-center'
@@ -16,7 +46,7 @@ const Modal = (props: Props) => {
                     0 41.8px 18px rgba(0, 0, 0, 0.05),
                     0 100px 43px rgba(0, 0, 0, 0.07)`,
       }}>
-      <h1 className='text-3xl mb-10 text-gray-500'>Connect Your Storage</h1>
+      <h1 className='text-3xl mb-10 text-gray-800'>Connect Your Storage</h1>
       <div>
         <button
           onClick={handleGithubLogin}

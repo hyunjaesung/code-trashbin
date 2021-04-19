@@ -5,7 +5,9 @@ import MainContainer from "./components/Main";
 import Modal from "./components/Main/components/Modal";
 
 function App() {
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+
   return (
     <div
       className={`Anton ${
@@ -18,12 +20,16 @@ function App() {
             onClick={() => {
               setOpenModal(false);
             }}></div>
-          <Modal />
+          <Modal setIsLogin={setIsLogin} setOpenModal={setOpenModal} />
         </>
       )}
       <div className='max-w-screen-xl w-full h-full'>
-        <Header />
-        <MainContainer />
+        <Header
+          setOpenModal={setOpenModal}
+          setIsLogin={setIsLogin}
+          isLogin={isLogin}
+        />
+        <MainContainer setOpenModal={setOpenModal} />
       </div>
     </div>
   );

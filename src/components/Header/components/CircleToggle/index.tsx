@@ -1,28 +1,30 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./circleToggle.css";
 
 interface Props {
   showChild: "first" | "second";
-  setChild: React.Dispatch<React.SetStateAction<boolean>>;
+  setToggle: () => void;
   firstChild: JSX.Element;
   secondChild: JSX.Element;
+  trigger: boolean;
 }
 
 const CircleToggle = ({
   firstChild,
   secondChild,
   showChild,
-  setChild,
+  setToggle,
+  trigger,
 }: Props) => {
-  const [isAnimation, setIsAnimation] = useState(false);
+  const [hasAnimation, setHasAnimation] = useState(false);
 
   return (
     <button
       className=' relative bg-button overflow-hidden w-12 h-12 rounded-full focus:outline-none'
       onClick={() => {
-        setChild((prev) => !prev);
-        if (!isAnimation) {
-          setIsAnimation(true);
+        setToggle();
+        if (!hasAnimation && trigger) {
+          setHasAnimation(true);
         }
       }}>
       <div className='flex relative w-full h-full'>
@@ -32,7 +34,7 @@ const CircleToggle = ({
               ? "cicleToggle-first-in"
               : "cicleToggle-first-out"
           } `}
-          style={isAnimation ? {} : { animation: "none" }}>
+          style={hasAnimation ? {} : { animation: "none" }}>
           {firstChild}
         </div>
         <div
@@ -41,7 +43,7 @@ const CircleToggle = ({
               ? "cicleToggle-second-in"
               : "cicleToggle-second-out"
           } `}
-          style={isAnimation ? {} : { animation: "none" }}>
+          style={hasAnimation ? {} : { animation: "none" }}>
           {secondChild}
         </div>
       </div>
