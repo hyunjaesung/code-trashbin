@@ -4,12 +4,17 @@ import Modal from "./components/Modal";
 
 interface Props {
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  isLogin: boolean;
 }
 
-const MainContainer = ({ setOpenModal }: Props) => {
+const MainContainer = ({ setOpenModal, isLogin }: Props) => {
   return (
     <div className='w-full h-full'>
-      <LoginMessage setOpenModal={setOpenModal} />
+      {isLogin ? (
+        <div>hihihihi</div>
+      ) : (
+        <LoginMessage setOpenModal={setOpenModal} />
+      )}
     </div>
   );
 };

@@ -5,8 +5,9 @@ import MainContainer from "./components/Main";
 import Modal from "./components/Main/components/Modal";
 
 function App() {
+  const hasToken = !!localStorage.getItem("token");
   const [openModal, setOpenModal] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(hasToken);
 
   return (
     <div
@@ -29,7 +30,7 @@ function App() {
           setIsLogin={setIsLogin}
           isLogin={isLogin}
         />
-        <MainContainer setOpenModal={setOpenModal} />
+        <MainContainer isLogin={isLogin} setOpenModal={setOpenModal} />
       </div>
     </div>
   );
