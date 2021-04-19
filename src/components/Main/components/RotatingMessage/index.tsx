@@ -30,7 +30,7 @@ const RotatingMessage = (props: Props) => {
   }, []);
   return (
     <div className='emblem' ref={ref}>
-      Please-Connect-Your-GitHub-
+      Please-Connect-Your-Storage-
     </div>
   );
 };
