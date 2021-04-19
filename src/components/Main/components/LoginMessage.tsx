@@ -3,9 +3,9 @@ import RotatingMessage from "./RotatingMessage";
 
 const LoginMessage = () => {
   return (
-    <div>
+    <section>
       <RotatingMessage />
-    </div>
+    </section>
   );
 };
 
