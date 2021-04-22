@@ -7,6 +7,7 @@ interface Props {
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const provider = new firebase.auth.GithubAuthProvider();
+provider.addScope("repo");
 
 const Modal = ({ setIsLogin, setOpenModal }: Props) => {
   const handleGithubLogin = useCallback(() => {
@@ -14,22 +15,15 @@ const Modal = ({ setIsLogin, setOpenModal }: Props) => {
       .auth()
       .signInWithPopup(provider)
       .then((result) => {
-        /** @type {firebase.auth.OAuthCredential} */
         const credential = result.credential as firebase.auth.OAuthCredential;
         const token = credential.accessToken;
         localStorage.setItem("token", token as string);
         console.log(result);
-        // The signed-in user info.
         // const user = result.user;
-        // ...
         setIsLogin(true);
         setOpenModal(false);
       })
       .catch((error) => {
-        // var errorCode = error.code;
-        // var errorMessage = error.message;
-        // var email = error.email;
-        // var credential = error.credential;
         localStorage.removeItem("token");
         setIsLogin(false);
       });
